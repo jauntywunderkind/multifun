@@ -1,0 +1,3 @@
+# multifun
+
+> Mutiple-dispatch function.
