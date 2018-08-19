@@ -19,5 +19,8 @@
 		"cjs": {
 			"namedExports": true
 		}
+	},
+	"dependencies": {
+		"extensible-function": "^1.1.1"
 	}
 }
