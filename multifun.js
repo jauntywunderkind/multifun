@@ -1,38 +1,60 @@
 import ExtensibleFunction from "extensible-function"
 
 export const
-  Fns= Symbol.for("multifun:fns"),
-  Reduce= Symbol.for("multifun:reduce")
+  Fns= Symbol.for( "multifun:fns"),
+  Map= Symbol.for( "multifun:map"),
+  Reduce= Symbol.for( "multifun:reduce"),
+  S= {
+  	Fns,
+  	Map,
+  	Reduce
+  }
 
-export class MultiFun extends ExtensibleFunction {
+export class Multifun extends ExtensibleFunction {
+	// symbols
+	static get Symbol(){
+		return S
+	}
+
+	// self aliases
+	static get Multifun(){
+		return Multifun
+	}
+	static get multifun(){
+		return Multifun
+	}
+
+	// stock method implementations
+	/**
+	  Run the given function with the present value
+	*/
+	static MapRunner( fn){
+		return fn( this)
+	}
+	/**
+	  Pick & return the first returned value
+	*/
 	static FirstReducer( arr){
 		return arr[ 0]
 	}
-	static get Fns(){
-		return Fns
+	/**
+	  Invoke this object with the given `val`.
+	*/
+	static Invoker( val){
+		const
+		  mapper= this[ Map],
+		  output= this[ Fns].map( mapper, val),
+		  reducer= this[ Reduce],
+		  reduced= reducer? reducer.call( this, output): output
+		return output
 	}
-	static get Reduce(){
-		return Reduce
-	}
-	static get MultiFun(){
-		return Multifun
-	}
-	static get Multifun(){
-		return MultiFun
-	}
-	static get multifun(){
-		return MultiFun
-	}
+
 	constructor( ...fns){
-		super( val=> {
-			const
-			  output= this[ Fns].map( fn=> fn( val)),
-			  reducer= this[ Reduce],
-			  reduced= reducer? reducer.call( this, output): output
-			return output
-		})
-		this[ Reduce]= MultiFun.FirstReducer
-		this[ Fns]= fns|| []
+		// lordy es classes are tempermental & obnoxious. chill you psycho:
+		super( val=> Multifun.Invoker.call( this, val))
+		this[ Map]= this[ Map]|| Multifun.MapRunner
+		this[ Reduce]= this[ Reduce]|| Multifun.FirstReducer
+		this[ Fns]= fns|| this[ Fns]|| []
 	}
 	push( ...args){
 		const fns= this[ Fns]
@@ -46,8 +68,7 @@ export class MultiFun extends ExtensibleFunction {
 		return this.fns[ Symbol.iterator]()
 	}
 }
-export default MultiFun
+export default Multifun
 export const
-  Multifun= MultiFun,
-  multifun= MultiFun,
-  FirstReducer= MultiFun.FirstReducer
+  multifun= Multifun,
+  FirstReducer= Multifun.FirstReducer
