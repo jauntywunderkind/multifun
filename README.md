@@ -1,3 +1,3 @@
-# multifun
+# multifunc
 
 > Mutiple-dispatch function.
