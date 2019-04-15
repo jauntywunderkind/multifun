@@ -1,3 +1,4 @@
+"use module"
 import ExtensibleFunction from "extensible-function"
 
 export const
@@ -63,6 +64,9 @@ export class Multifun extends ExtensibleFunction {
 	splice( ...args){
 		const fns= this[ Fns]
 		return foo.splice.apply( fns, args)
+	}
+	clear(){
+		this[ Fns]= []
 	}
 	[Symbol.iterator](){
 		return this.fns[ Symbol.iterator]()

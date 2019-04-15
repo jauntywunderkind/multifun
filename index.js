@@ -1,6 +1,6 @@
 "use strict"
 var
   esm= require( "esm")( module),
-  multifun= esm( "./multifun.js")
+  multifunc= esm( "./multifunc.js")
 
-const m= module.exports= multifun.default
+const m= module.exports= multifunc.default

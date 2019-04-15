@@ -1,8 +1,10 @@
 {
 	"name": "multifunc",
-	"version": "1.1.2",
+	"version": "1.2.0",
 	"description": "Multiple dispatch function",
-	"main": "index.js",
+	"type": "module",
+	"main": "multifunc.js",
+	"module": "multifunc.js",
 	"scripts": {
 		"test": "node -r esm .test"
 	},
@@ -13,18 +15,12 @@
 	"keywords": [],
 	"author": "jauntywunderkind",
 	"license": "MIT",
-	"module": "multifunc.js",
 	"esm": true,
-	"@std/esm": {
-		"cjs": {
-			"namedExports": true
-		}
-	},
 	"dependencies": {
 		"extensible-function": "^1.1.1"
 	},
 	"devDependencies": {
-		"esm": "^3.1.1",
+		"esm": "^3.2.20",
 		"tape": "^4.9.1"
 	}
 }
