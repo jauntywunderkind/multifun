@@ -1,12 +1,12 @@
 {
 	"name": "multifunc",
+	"type": "module",
 	"version": "1.2.0",
 	"description": "Multiple dispatch function",
-	"type": "module",
 	"main": "multifunc.js",
 	"module": "multifunc.js",
 	"scripts": {
-		"test": "node -r esm .test"
+		"test": "node .test"
 	},
 	"repository": {
 		"type": "git",
@@ -20,7 +20,6 @@
 		"extensible-function": "^1.1.1"
 	},
 	"devDependencies": {
-		"esm": "^3.2.20",
-		"tape": "^4.9.1"
+		"tape": "^4.14.0"
 	}
 }
